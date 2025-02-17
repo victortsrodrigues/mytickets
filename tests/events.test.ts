@@ -177,5 +177,9 @@ describe("DELETE /events/:id", () => {
     const response = await api.delete(`/events/${event.id}`);
     // assert
     expect(response.status).toBe(httpStatus.NO_CONTENT);
+
+    // check if it is deleted
+    const response2 = await api.get(`/events/${event.id}`);
+    expect(response2.status).toBe(httpStatus.NOT_FOUND);
   });	
 });
